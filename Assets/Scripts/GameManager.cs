@@ -36,33 +36,35 @@ public class GameManager : MonoBehaviour
 
 
     //Method penyeleksi untuk menambah score
+    
+    public void ScoreCheck()
+    {
+        if (PlayerScoreL == 20)
+        {
+            Debug.Log("playerL win");
+            this.gameObject.SendMessage("ChangeScene", "Main Menu");
+        }
+        else if (PlayerScoreR == 20)
+        {
+            Debug.Log("playerR win");
+            this.gameObject.SendMessage("ChangeScene", "Main Menu");
+        }
+    }
+    
     public void Score(string wallID)
     {
         if (wallID == "Vertical Border (Left)")
         {
             PlayerScoreR = PlayerScoreR + 10; //Menambah score
             txtPlayerScoreR.text = PlayerScoreR.ToString(); //Mengisikan nilai integer PlayerScore ke UI
+            ScoreCheck();
         }
         else
         {
             PlayerScoreL = PlayerScoreL + 10;
             txtPlayerScoreL.text = PlayerScoreL.ToString();
+            ScoreCheck();
 
         }
     }
-    public void ScoreCheck()
-    {
-        if (PlayerScoreL == 20)
-        {
-            Debug.Log("playerL win");
-            this.gameObject.SendMessage("ChangeScene", "MainMenu");
-        }
-        else if (PlayerScoreR == 20)
-        {
-            Debug.Log("playerR win");
-            this.gameObject.SendMessage("ChangeScene", "MainMenu");
-        }
-    }
-    
-
 }
